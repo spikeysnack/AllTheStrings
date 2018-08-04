@@ -673,10 +673,14 @@ You can call them by name in array-style.
 
 Or you can call the functions __color16()__ or __color256()__ 
 with a number in the range [0..15], and [0..255], respectively.
+
 _color_16_ is an enumerated type 0-15
+
 _color_256_ is a typedef for unsigned short (0-256)
 
-The __colorstring__ function allows a string to be colored with an integer [0-255]. 
+
+The __colorstring__ function allows a string to be colored with an integer [0..255]. 
+
 ```C++
 colorstring(const string& s, color_256 c);
 ```
