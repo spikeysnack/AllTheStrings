@@ -362,6 +362,7 @@ cout << "reverse:\t" << "[" << r  << "]\n";
 A few AllTheStrings functions generate and receive string vectors, not individual strings. 
 These are not complicated, they are a simple std::vector&lt;std::string&gt;.
 
+### split
 *split* simply splits a string into a vector by spaces. 
 
 ```C++
@@ -373,9 +374,9 @@ cout << endl;
 
 	|    This|	Dog|	Has|	No|	Good|	Reason|   to|	Love|	Men.|
 
-
+### join
 *join* takes a string vector and makes a single string out of it.
-You can specify the conjoiner character bewteen strings.
+You can specify the conjoiner character between strings.
 ```C++
 t1 = join(v, ":");
 cout << t1 << endl;
@@ -384,7 +385,7 @@ cout << t1 << endl;
 	This:Dog:Has:No:Good:Reason:to:Love:Men.
 
 
-
+### tokenize
 *tokenize* splits strings on a set of delimiters
 similar to the C function, but is not destructive
 of the original string, and returns a whole string vector.
@@ -407,6 +408,7 @@ for(auto s : u) cout << s << endl;
 
 
 ```C++
+auto r = reverse(t1);
 auto w = tokenize(r, ":; ");
 for(auto s : w)  cout << s << endl;
 ```
@@ -421,6 +423,7 @@ for(auto s : w)  cout << s << endl;
 	goD
 	sihT
 
+### apply
 *apply* takes a string function and performs it on a list of arguments, 
 then returns a single string of concatenated results.
 
@@ -431,6 +434,7 @@ cout << t << "\n";
 
 	ananab hsif drib tac god
 
+### applytoall
 *applytoall* takes a string function and performs it on a list of arguments
 then returns a string vector containing each of the results.
 
@@ -444,7 +448,8 @@ svector v = applytoall( all_caps ,"dog" , "cat", "bird", "fish", "banana");
 	CAT
 	BIRD
 	FISH
-		BANANA
+	BANANA
+
 
 
 ### random
@@ -653,6 +658,7 @@ int main()
 	This is four and two and three and one.
 
 ## COLOR
+![Colorcodes]( doc/256colorcodes.png?raw=true  "color codes")
 
 ### ANSI 16 and 256 color is supported for text output.
 
@@ -699,6 +705,7 @@ The colorstring function allows a string to be colored with an integer [0-255].
     cout << color16(normal) << endl;
 	
 ```
+![Color]( doc/color_example.png?raw=true  "color_example")
 
 ## IMPROVEMENTS
 
