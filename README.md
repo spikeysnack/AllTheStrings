@@ -20,12 +20,15 @@
 
 ## INTRO
 
-### Hello and welcome. AllTheStrings is a C++ strings utlity library 
+### Hello and welcome.
+
+__AllTheStrings__ is a C++ strings utlity library 
 that makes programming with strings and string manipulation easy.
-One feature of AllTheStrings is that it makes an effort to be
-non-destructive of the original string.
+
+One feature of AllTheStrings is that it makes every effort to be
+*non-destructive* of the original string.
  
-*Every function returns a brand new object or collection of new objects.*
+*Every function returns a brand new string or a collection of new objects.*
 
 This functional approach ensures that data is only changed permanently
 when you want it to be; the original string is always available for use. 
