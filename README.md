@@ -159,7 +159,7 @@ Installation is by default into _/usr/local/lib_ and _/usr/local/include_
  
 and requires admin or sudo privileges.
 
-Alternatively you may put _libAllTheStrins.so.1_ and its
+Alternatively you may put _libAllTheStrings.so.1_ and its
 
 link _libAllTheStrings.so_ and the associated header _AllTheStrings.h_ 
 
@@ -253,8 +253,10 @@ z = " [ q w  t e  e  4 5 66 7 77     7 888 ]";
 cout << "[" <<  z  << "]\n";
 
 cout << "[" << rm_dblspaces(z)  << "]\n";
- trim:	[(y)] 
 ```
+
+        trim:	[(y)] 
+
 
 	pad:	[                (y)            XXXXXXXXXXXXXXXXXXXX]
 
@@ -276,7 +278,6 @@ cout << "all_caps:\t" << "[" << all_caps(z)  << "]\n";
 
 cout << "uncapitalize:\t" << "[" << uncapitalize(z)  << "]\n";
 
-
 s = "This Dog has no REASON to love men.";
 cout << "[" << s  << "]\n";
 
@@ -285,7 +286,8 @@ cout << "sentence_case:\t" << "[" << sentence_case(s)  << "]\n";
 cout << "title_case:\t" << "[" << title_case(s)  << "]\n";
 cout << "[" << title_case(uncapitalize(s))  << "]\n";
 ```
-	truncate:	 [1234567890]
+
+        truncate:	 [1234567890]
 	all_caps:	[1234567890ABCDEFGHIKLMNOPQRSTUVWXYZ]
 	uncapitalize:	[1234567890abcdefghiklmnopqrstuvwxyz]
 	[This Dog has no REASON to love men.]
@@ -354,9 +356,8 @@ cout << "reverse:\t" << "[" << r  << "]\n";
 
 ## Splitting and Joining 
 
-### A few AllTheStrings functions generate and receive
-### string vectors, not individual strings. 
-### These are not complicated, they are a simple std::vector&lt;std::string&gt;.
+A few AllTheStrings functions generate and receive string vectors, not individual strings. 
+These are not complicated, they are a simple std::vector&lt;std::string&gt;.
 
 *split* simply splits a string into a vector by spaces. 
 
@@ -701,6 +702,7 @@ The colorstring function allows a string to be colored with an integer [0-255].
 ### There is always room for improvement in code. 
 Experiment; stumble; break; repair; leap forward. 
 Get better by doing, by impact.
+
 I appreciate suggestions and/or criticisms from users and
 experts and welcome submissions. Flames go to /dev/null.
 happy coding! 
