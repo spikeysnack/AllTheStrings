@@ -258,11 +258,9 @@ cout << "[" <<  z  << "]\n";
 cout << "[" << rm_dblspaces(z)  << "]\n";
 ```
 
-        trim:	[(y)] 
-
-
+	trim:	[(y)] 
+	
 	pad:	[                (y)            XXXXXXXXXXXXXXXXXXXX]
-
 
 	[                (y)            ]
 
@@ -578,9 +576,10 @@ cout << "fixed:\t" << rep( PI, std::fixed) << "\n";
 ### format
 *format* is the equivalent of _std::sprintf_.
 In that it formats a string with printf format codes. (It is not completely safe, in that incorrect formatting codes can lead to seg faults, just like in C. Be careful.)
-string formatstr("this is a %s string:\t%zu\t%f and all that %s \n");
 
 ```C++
+string formatstr("this is a %s string:\t%zu\t%f and all that %s \n");
+
 string bb;
 bb = format( formatstr.c_str() , "format" , 567 , 3.14159 , "stuff", 13  );
 cout << bb ;
@@ -638,8 +637,12 @@ template<typename S, typename... Args>
 string interpolate( const S& orig , const Args&... args); 
 ```
 
-The numbered arguments in braces are replaced by the positional arguments given to the function.
-You don't have to use them all, but you must have at least as many as the larges positional number in the string.
+The numbered arguments in braces are replaced 
+by the positional arguments given to the function.
+
+You don't have to use them all, but you must have 
+at least as many as the larges positional number in the string.
+
 The braced tokens don't need to be in order.
 
 ```C++
@@ -665,12 +668,18 @@ int main()
 If you enable __USE_COLOR__ in your compiler defines You will be able to print to the screen in 16 or 256 color text.
 
 Invoking the function *"ats_color_init()"* initializes and returns an 
-*associative map* containing strings that colorize text. You can call them by name in array-style.
+*associative map* containing strings that colorize text. 
+You can call them by name in array-style. 
 
-Or you can call the functions color16() or color256() with a number in the range 0-15, and 0-255, respectively.
+Or you can call the functions __color16()__ or __color256()__ 
+with a number in the range [0..15], and [0..255], respectively.
+_color_16_ is an enumerated type 0-15
+_color_256_ is a typedef for unsigned short (0-256)
 
-The colorstring function allows a string to be colored with an integer [0-255]. 
-
+The __colorstring__ function allows a string to be colored with an integer [0-255]. 
+```C++
+colorstring(const string& s, color_256 c);
+```
 
 	Makefile
 	DEFINES += -DUSE_SMALL_WORDS -DUSE_COLOR
