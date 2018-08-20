@@ -23,7 +23,7 @@
 */
 
 
-/* Note: 
+/* Note:
  * If the symbol USE_SMALL_WORDS is defined
  * -D USE_SMALL_WORDS on the compilation line
  * or here as a preprocessor directive
@@ -35,7 +35,7 @@
 
 
 
-#define _GNU_SRC 
+#define _GNU_SRC
 
 #ifndef ALLTHESTRINGS_H
 #define ALLTHESTRINGS_H
@@ -77,10 +77,10 @@
    #if ( __cplusplus < 201103L )
    #error "C++11 or greater required."
    #endif
-#endif 
+#endif
 
 
-#if defined(_WIN64) || defined(_WIN32) 
+#if defined(_WIN64) || defined(_WIN32)
    #define _WIN 1    /* Microsoft Windows */
 #endif
 
@@ -101,17 +101,17 @@ namespace AllTheStrings
 
 
 
-  const string ats_ascii_banner{ 
+  const string ats_ascii_banner{
 R"BANNER(
 
- _____ _ _    _____ _          _____ _       _             
-|  _  | | |  |_   _| |_ ___   |   __| |_ ___|_|___ ___ ___ 
+ _____ _ _    _____ _          _____ _       _
+|  _  | | |  |_   _| |_ ___   |   __| |_ ___|_|___ ___ ___
 |     | | |    | | |   | -_|  |__   |  _|  _| |   | . |_ -|
 |__|__|_|_|    |_| |_|_|___|  |_____|_| |_| |_|_|_|_  |___|
-                                                  |___|    
+                                                  |___|
 
 )BANNER"};
-  
+
 
 /***************************************************************/
 
@@ -152,7 +152,7 @@ bool ends_with   (  const string& in, const string& match);
 bool ends_with   (  const string& in, const char* m);
 
 
-/* alteration functions */ 
+/* alteration functions */
 string quote  ( const string& in);
 string quote  ( const char* in);
 string unquote( const string& in);
@@ -216,11 +216,11 @@ string remove_word( const string& in, const string& match );
 string replace_word( const string& in , const string& match, const string& _replacement );
 string reverse( string& s );
 
- 
+
 
   /* large string operations */
 std::vector<string> split(const string& in);
-std::vector<string> tokenize( const string &in, const string& sep="," ); 
+std::vector<string> tokenize( const string &in, const string& sep="," );
 string join(const std::vector<string>& v, const string& delim=" ");
 string repaginate(string& in, size_t len=80, size_t indent=0, bool indentall=false, size_t indentfirsttoo=0 );
 
@@ -251,9 +251,9 @@ string repeat( const string &in, size_t n );
 
 
 
-  /* Override for systems 
+  /* Override for systems
      that do not have std::defaultfloat
-  */ 
+  */
 
 // this is gcc 4.8 or less
 #if defined(__GNUC__)  && (__GNUC__ <= 5 && __GNUC_MINOR__ < 1)
@@ -283,7 +283,7 @@ defaultfloat(std::ios_base& __base)
 
 // floating point string format
 template <class T>
-string fprep(T const &t, size_t prec=8, std::ios_base& (*fmt)(std::ios_base&) = defaultfloat )    
+string fprep(T const &t, size_t prec=8, std::ios_base& (*fmt)(std::ios_base&) = defaultfloat )
 {
 
   std::stringstream ss;
@@ -298,10 +298,10 @@ string fprep(T const &t, size_t prec=8, std::ios_base& (*fmt)(std::ios_base&) = 
 
 // non-fp rep
 template <class T>
-string rep(T const &t, size_t prec=8, std::ios_base& (*fmt)(std::ios_base&) = defaultfloat )    
+string rep(T const &t, size_t prec=8, std::ios_base& (*fmt)(std::ios_base&) = defaultfloat )
 {
 
-  std::stringstream ss; 
+  std::stringstream ss;
 
   if ( std::is_floating_point<T>::value ) return fprep( t, prec, fmt);
 
@@ -345,14 +345,14 @@ std::vector<string> applytoall (F &func, const Args&... args)
 
 
 /** interpolate tokens in a string and replace them with an argument list.
-    
-   interpolate( "This is {1} and {2} and {3}." , "one" , "two", "three")
-    
-   yields 
-  
-   "This is one  and two and three."       
 
-*/  
+   interpolate( "This is {1} and {2} and {3}." , "one" , "two", "three")
+
+   yields
+
+   "This is one  and two and three."
+
+*/
 template<typename S, typename... Args>
 string interpolate( const S& orig , const Args&... args)
 {
@@ -361,7 +361,7 @@ string interpolate( const S& orig , const Args&... args)
    // populate vector from argument list
    auto va {args...};
    std::vector<string> v{va};
-   
+
    size_t i = 1;
 
    for( string s: v)
@@ -377,7 +377,7 @@ string interpolate( const S& orig , const Args&... args)
 	       out.erase(pos, t.length()); //erase token
 	       out.insert( pos, s);       // insert arg
 	     }
-	   i++;                           // next 
+	   i++;                           // next
 	 }
 	 catch( std::exception& e)
 	   {
@@ -405,7 +405,7 @@ string readFile( const string& filename);
 
 std::vector<string> readLines( const string& filename, const string& sep="\n" );
 
-size_t writeFile( const string& filename , const string& data, std::ios_base::openmode mode = std::ios::out); 
+size_t writeFile( const string& filename , const string& data, std::ios_base::openmode mode = std::ios::out);
 
 #define appendFile( f , d ) writeFile( f, d ,  std::ios::out|std::ios::app)
 
@@ -417,9 +417,9 @@ size_t writeFile( const string& filename , const string& data, std::ios_base::op
 enum color_16
   {
     BLACK=0, RED = 1, GREEN=2, YELLOW=3, BLUE=4, MAGENTA=5, CYAN=6,  WHITE=7,
-    GRAY=8, BRIGHTRED=9,  BRIGHTGREEN=10,BRIGHTYELLOW=11, BRIGHTBLUE=12, 
-    BRIGHTMAGENTA=13, BRIGHTCYAN=14, BRIGHTWHITE=15, 
-    black=BLACK, yellow=YELLOW, red=RED, green=GREEN, blue=BLUE, cyan=CYAN, 
+    GRAY=8, BRIGHTRED=9,  BRIGHTGREEN=10,BRIGHTYELLOW=11, BRIGHTBLUE=12,
+    BRIGHTMAGENTA=13, BRIGHTCYAN=14, BRIGHTWHITE=15,
+    black=BLACK, yellow=YELLOW, red=RED, green=GREEN, blue=BLUE, cyan=CYAN,
     gray=GRAY, white=WHITE, bold=BRIGHTWHITE, normal=white
   };
 
@@ -434,7 +434,7 @@ string color256( color_256 c);
 // color a string and return to normal after
 string colorstring(const string& s, color_256 n);
 
-// returns a map of color strings -- color["red"], color["blue"], ... 
+// returns a map of color strings -- color["red"], color["blue"], ...
 std::map<string,string> ats_color_init();
 
 

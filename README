@@ -47,12 +47,17 @@ You can just call the functions without any preamble.
 Usage
 
  Using the library is an easy process:
+ 
+#include "AllTheStrings.H"  (single header library option, no object files needed)
+
+                          
+
+or, if you prefer
 
 
 #include "AllTheStrings.h" 
 
-  
-link in AllTheStrings.o into your compile.
+then link in AllTheStrings.o into your compile.
  
   
 or add libAllTheStrings.so  as -lAllTheStrings into your compile. 

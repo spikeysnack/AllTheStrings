@@ -50,14 +50,23 @@ You can just call the functions without any preamble.
 
 ### Using the library is an easy process:
 
+
+```C++
+ #include "AllTheStrings.H" // Single library version
+                            // (no object file needed) 
+```
+ 
+or 
+
 ```C++
  #include "AllTheStrings.h" 
 ```
-  
- link in AllTheStrings.o into your compile.
+then link in AllTheStrings.o into your compile.
  
+
   
  or add libAllTheStrings.so  as -lAllTheStrings into your compile. 
+
  
 
 ```C++
@@ -354,9 +363,9 @@ cout << "reverse:\t" << "[" << r  << "]\n";
 
 ## Splitting and Joining 
 
-### A few AllTheStrings functions generate and receive
-### string vectors, not individual strings. 
-### These are not complicated, they are a simple std::vector&lt;std::string&gt;.
+A few AllTheStrings functions generate and receivestring vectors, not individual strings. 
+These are not complicated, they are a simple std::vector&lt;std::string&gt;.
+
 
 *split* simply splits a string into a vector by spaces. 
 
