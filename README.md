@@ -20,12 +20,15 @@
 
 ## INTRO
 
-### Hello and welcome. AllTheStrings is a C++ strings utlity library 
+### Hello and welcome.
+
+__AllTheStrings__ is a C++ strings utlity library 
 that makes programming with strings and string manipulation easy.
-One feature of AllTheStrings is that it makes an effort to be
-non-destructive of the original string.
+
+One feature of AllTheStrings is that it makes every effort to be
+*non-destructive* of the original string.
  
-*Every function returns a brand new object or collection of new objects.*
+*Every function returns a brand new string or a collection of new objects.*
 
 This functional approach ensures that data is only changed permanently
 when you want it to be; the original string is always available for use. 
@@ -168,7 +171,7 @@ Installation is by default into _/usr/local/lib_ and _/usr/local/include_
  
 and requires admin or sudo privileges.
 
-Alternatively you may put _libAllTheStrins.so.1_ and its
+Alternatively you may put _libAllTheStrings.so.1_ and its
 
 link _libAllTheStrings.so_ and the associated header _AllTheStrings.h_ 
 
@@ -262,11 +265,11 @@ z = " [ q w  t e  e  4 5 66 7 77     7 888 ]";
 cout << "[" <<  z  << "]\n";
 
 cout << "[" << rm_dblspaces(z)  << "]\n";
- trim:	[(y)] 
 ```
 
+	trim:	[(y)] 
+	
 	pad:	[                (y)            XXXXXXXXXXXXXXXXXXXX]
-
 
 	[                (y)            ]
 
@@ -285,7 +288,6 @@ cout << "all_caps:\t" << "[" << all_caps(z)  << "]\n";
 
 cout << "uncapitalize:\t" << "[" << uncapitalize(z)  << "]\n";
 
-
 s = "This Dog has no REASON to love men.";
 cout << "[" << s  << "]\n";
 
@@ -294,7 +296,8 @@ cout << "sentence_case:\t" << "[" << sentence_case(s)  << "]\n";
 cout << "title_case:\t" << "[" << title_case(s)  << "]\n";
 cout << "[" << title_case(uncapitalize(s))  << "]\n";
 ```
-	truncate:	 [1234567890]
+
+        truncate:	 [1234567890]
 	all_caps:	[1234567890ABCDEFGHIKLMNOPQRSTUVWXYZ]
 	uncapitalize:	[1234567890abcdefghiklmnopqrstuvwxyz]
 	[This Dog has no REASON to love men.]
@@ -363,10 +366,16 @@ cout << "reverse:\t" << "[" << r  << "]\n";
 
 ## Splitting and Joining 
 
+<<<<<<< HEAD
 A few AllTheStrings functions generate and receivestring vectors, not individual strings. 
 These are not complicated, they are a simple std::vector&lt;std::string&gt;.
 
+=======
+A few AllTheStrings functions generate and receive string vectors, not individual strings. 
+These are not complicated, they are a simple std::vector&lt;std::string&gt;.
+>>>>>>> 4aea7188eaf3ae2beba34eed62f886e54d447d6b
 
+### split
 *split* simply splits a string into a vector by spaces. 
 
 ```C++
@@ -378,9 +387,9 @@ cout << endl;
 
 	|    This|	Dog|	Has|	No|	Good|	Reason|   to|	Love|	Men.|
 
-
+### join
 *join* takes a string vector and makes a single string out of it.
-You can specify the conjoiner character bewteen strings.
+You can specify the conjoiner character between strings.
 ```C++
 t1 = join(v, ":");
 cout << t1 << endl;
@@ -389,7 +398,7 @@ cout << t1 << endl;
 	This:Dog:Has:No:Good:Reason:to:Love:Men.
 
 
-
+### tokenize
 *tokenize* splits strings on a set of delimiters
 similar to the C function, but is not destructive
 of the original string, and returns a whole string vector.
@@ -412,6 +421,7 @@ for(auto s : u) cout << s << endl;
 
 
 ```C++
+auto r = reverse(t1);
 auto w = tokenize(r, ":; ");
 for(auto s : w)  cout << s << endl;
 ```
@@ -426,6 +436,7 @@ for(auto s : w)  cout << s << endl;
 	goD
 	sihT
 
+### apply
 *apply* takes a string function and performs it on a list of arguments, 
 then returns a single string of concatenated results.
 
@@ -436,6 +447,7 @@ cout << t << "\n";
 
 	ananab hsif drib tac god
 
+### applytoall
 *applytoall* takes a string function and performs it on a list of arguments
 then returns a string vector containing each of the results.
 
@@ -449,7 +461,8 @@ svector v = applytoall( all_caps ,"dog" , "cat", "bird", "fish", "banana");
 	CAT
 	BIRD
 	FISH
-		BANANA
+	BANANA
+
 
 
 ### random
@@ -578,9 +591,10 @@ cout << "fixed:\t" << rep( PI, std::fixed) << "\n";
 ### format
 *format* is the equivalent of _std::sprintf_.
 In that it formats a string with printf format codes. (It is not completely safe, in that incorrect formatting codes can lead to seg faults, just like in C. Be careful.)
-string formatstr("this is a %s string:\t%zu\t%f and all that %s \n");
 
 ```C++
+string formatstr("this is a %s string:\t%zu\t%f and all that %s \n");
+
 string bb;
 bb = format( formatstr.c_str() , "format" , 567 , 3.14159 , "stuff", 13  );
 cout << bb ;
@@ -638,8 +652,12 @@ template<typename S, typename... Args>
 string interpolate( const S& orig , const Args&... args); 
 ```
 
-The numbered arguments in braces are replaced by the positional arguments given to the function.
-You don't have to use them all, but you must have at least as many as the larges positional number in the string.
+The numbered arguments in braces are replaced 
+by the positional arguments given to the function.
+
+You don't have to use them all, but you must have 
+at least as many as the larges positional number in the string.
+
 The braced tokens don't need to be in order.
 
 ```C++
@@ -658,18 +676,29 @@ int main()
 	This is four and two and three and one.
 
 ## COLOR
+![Colorcodes]( doc/256colorcodes.png?raw=true  "color codes")
 
 ### ANSI 16 and 256 color is supported for text output.
 
 If you enable __USE_COLOR__ in your compiler defines You will be able to print to the screen in 16 or 256 color text.
 
 Invoking the function *"ats_color_init()"* initializes and returns an 
-*associative map* containing strings that colorize text. You can call them by name in array-style.
+*associative map* containing strings that colorize text. 
+You can call them by name in array-style. 
 
-Or you can call the functions color16() or color256() with a number in the range 0-15, and 0-255, respectively.
+Or you can call the functions __color16()__ or __color256()__ 
+with a number in the range [0..15], and [0..255], respectively.
 
-The colorstring function allows a string to be colored with an integer [0-255]. 
+_color_16_ is an enumerated type 0-15
 
+_color_256_ is a typedef for unsigned short (0-256)
+
+
+The __colorstring__ function allows a string to be colored with an integer [0..255]. 
+
+```C++
+colorstring(const string& s, color_256 c);
+```
 
 	Makefile
 	DEFINES += -DUSE_SMALL_WORDS -DUSE_COLOR
@@ -704,12 +733,14 @@ The colorstring function allows a string to be colored with an integer [0-255].
     cout << color16(normal) << endl;
 	
 ```
+![Color]( doc/color_example.png?raw=true  "color_example")
 
 ## IMPROVEMENTS
 
 ### There is always room for improvement in code. 
 Experiment; stumble; break; repair; leap forward. 
 Get better by doing, by impact.
+
 I appreciate suggestions and/or criticisms from users and
 experts and welcome submissions. Flames go to /dev/null.
 happy coding! 
