@@ -11,7 +11,7 @@
 #### license     : Free for all non-commercial purposes. 
               Modifications allowed but original attribution must be included. 
               See (http://creativecommons.org/licenses/by-nc/4.0/)
-#### maintainer  : chris Reid
+#### maintainer  : Chris Reid
 #### modification_date : 3 Aug 2018
 #### version     : 1.1
 #### status      : Release Candidate
@@ -22,8 +22,8 @@
 
 ### Hello and welcome.
 
-__AllTheStrings__ is a C++ strings utlity library 
-that makes programming with strings and string manipulation easy.
+__AllTheStrings__ is a C++ strings utility library 
+designed to make programming with strings and string manipulation easy.
 
 One feature of AllTheStrings is that it makes every effort to be
 *non-destructive* of the original string.
@@ -32,19 +32,21 @@ One feature of AllTheStrings is that it makes every effort to be
 
 This functional approach ensures that data is only changed permanently
 when you want it to be; the original string is always available for use. 
-Most of string formatting is in the output stage, usually the original string
-is used again in its original form or discarded after that.
+
+Most string formatting is done in the output stage. 
+Usually the original string is used again in its original form or discarded after that.
    
-This may not be the fastest or most efficient way to work with strings, 
+This might not be the fastest or most efficient way to work with strings, 
 but it is the safest, and often the easiest.
   
-The STL std::string class already has optimized assignment and copying built in,
-so unless you are creating huge strings    
-( and then you should write your own huge string library) 
-there  should be no problem with speed or memory. 
+The STL *std::string* class already has optimized assignment and copying 
+functions built in so unless you are creating huge strings    
+(and if so you should write your own huge string library) 
+there  should be no problems with speed or memory. 
   
-All the AllTheStrings functions are enclosed in the namespace AllTheStrings.
-It is included automatically when including the AllTheStrings.h header.
+All the *AllTheStrings* functions are enclosed in the namespace *AllTheStrings*.
+It is included automatically when including the *AllTheStrings.h* header.
+
 You can just call the functions without any preamble. 
  
 
