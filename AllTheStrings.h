@@ -283,7 +283,7 @@ defaultfloat(std::ios_base& __base)
 
 // floating point string format
 template <class T>
-string fprep(T const &t, size_t prec=8, std::ios_base& (*fmt)(std::ios_base&) = defaultfloat )
+string fprep(T const &t, size_t prec=8, std::ios_base& (*fmt)(std::ios_base&) = std::defaultfloat )
 {
 
   std::stringstream ss;
@@ -298,7 +298,7 @@ string fprep(T const &t, size_t prec=8, std::ios_base& (*fmt)(std::ios_base&) = 
 
 // non-fp rep
 template <class T>
-string rep(T const &t, size_t prec=8, std::ios_base& (*fmt)(std::ios_base&) = defaultfloat )
+string rep(T const &t, size_t prec=8, std::ios_base& (*fmt)(std::ios_base&) = std::defaultfloat )
 {
 
   std::stringstream ss;
@@ -359,8 +359,9 @@ string interpolate( const S& orig , const Args&... args)
    string out(orig);
 
    // populate vector from argument list
-   auto va {args...};
-   std::vector<string> v{va};
+   //auto va {args...};
+   //std::vector<string> v{va};
+   std::vector<string> v{args...};
 
    size_t i = 1;
 

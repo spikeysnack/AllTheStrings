@@ -18,12 +18,13 @@ EXCEPTIONS=1
 COLORS=1
 
 
-#CC= gcc
-#CXX= g++
+CC= gcc
+CXX= g++
 
-CC= clang
-CXX= clang++
-CXXFLAGS= -std=c++11 -Wall  -Wextra  -Wformat -pedantic -Werror -fpic 
+CXXFLAGS= -std=gnu++2a -Wall  -Wextra  -Wformat -pedantic -Werror -fpic 
+#CC= clang
+#CXX= clang++
+#CXXFLAGS= -std=c++11 -Wall  -Wextra  -Wformat -pedantic -Werror -fpic 
 
 #BASE_CFLAGS= -m32 -fstrict-aliasing -fpic  -Wno-unused-function $(DEFINES) 
 BASE_CFLAGS=  -fstrict-aliasing -fpic  -Wno-unused-function $(DEFINES) 

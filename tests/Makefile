@@ -16,12 +16,13 @@
 DEBUG=1
 EXCEPTIONS=1
 
-#CC= gcc
-#CXX= g++
+CC= gcc
+CXX= g++
 
-CC= clang
-CXX= clang++
-CXXFLAGS= -std=c++11 -Wall  -Wextra  -Wformat -pedantic -Werror -fpic 
+CXXFLAGS= -std=gnu++2a -Wall  -Wextra  -Wformat -pedantic -Werror -fpic 
+#CC= clang
+#CXX= clang++
+#CXXFLAGS= -std=c++11 -Wall  -Wextra  -Wformat -pedantic -Werror -fpic 
 
 #BASE_CFLAGS= -m32 -fstrict-aliasing -fpic  -Wno-unused-function $(DEFINES) 
 BASE_CFLAGS=  -fstrict-aliasing -fpic  -Wno-unused-function $(DEFINES) 
@@ -41,7 +42,7 @@ else
 	CXXFLAGS += -fnoexceptions
 endif
 
-
+#
 ifdef DEBUG
 DEFINES += -DDEBUG
 CFLAGS= $(BASE_CFLAGS)  $(DEBUG_CFLAGS)
@@ -94,15 +95,15 @@ table:	StringTable.h table.cpp
 
 test:	strtest
 	@./atstest
-	@read -p "Press enter to continue"
+	@read -p "Press enter to continue" dummy
 	@./applytest
-	@read -p "Press enter to continue"
+	@read -p "Press enter to continue" dummy
 	@./valuetest
-	@read -p "Press enter to continue"
+	@read -p "Press enter to continue" dummy
 	@./formattest
-	@read -p "Press enter to continue"
+	@read -p "Press enter to continue" dummy
 	@./inserttest
-	@read -p "Press enter to continue"
+	@read -p "Press enter to continue" dummy
 	@./colortest
 
 
