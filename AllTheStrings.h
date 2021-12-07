@@ -148,8 +148,16 @@ int compare(const string& a , const string& b , bool case_sensitive=true);
 
 bool begins_with (  const string& in, const string& match);
 bool begins_with (  const string& in, const char* m);
+#define starts_with begins_with
+  
+bool begins_with_ci (  const string& in, const string& match);
+bool begins_with_ci (  const string& in, const char* m);
+#define starts_with_ci begins_with_ci
+  
 bool ends_with   (  const string& in, const string& match);
 bool ends_with   (  const string& in, const char* m);
+bool ends_with_ci   (  const string& in, const string& match);
+bool ends_with_ci   (  const string& in, const char* m);
 
 
 /* alteration functions */

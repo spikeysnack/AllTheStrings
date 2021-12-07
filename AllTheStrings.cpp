@@ -256,29 +256,54 @@ string chomp( const string& in)
 } // chomp
 
 
-bool begins_with(  const string& in, const string& match)
+bool begins_with( const string& in, const string& match)
 {
-    if (in.compare(0, match.length(), match) == 0) return true;
-    return false;
+  return (in.compare(0, match.length(), match) == 0);
 } // begins_with
 
-
-bool begins_with(  const string& in, const char* m)
+bool begins_with( const string& in, const char* m)
 {
   return begins_with( in, string{m} );
 }
 
+  
+bool begins_with_ci ( const string& in, const string& match)
+{
+  
+  string i_in {in };
+  auto iend   {i_in.end() };
+  auto ibeg   {i_in.begin() };
+  // size_t ilen {i_in.length() };
+  std::transform(ibeg, iend, ibeg, ::tolower);
+  
+  string i_match {match};
+  auto imbeg     {i_match.begin() };
+  auto imend     {i_match.end() };
+  size_t imlen   {i_match.length() };
+  std::transform(imbeg, imend, imbeg, ::tolower);
+
+  return (i_in.compare(0, imlen, i_match) == 0);
+}
+  
+bool begins_with_ci(  const string& in, const char* m)
+{
+  return begins_with_ci( in, string{m} );
+}
+  
 
 bool ends_with(  const string& in, const string& match)
 {
-  size_t len = match.length();
+  auto iend{in.end()};
 
-  string cmp( (in.end()-len), in.end() );
+  size_t mlen = match.length();
+  
+  string cmp( (iend-mlen), iend );
 
   return cmp.compare(match) == 0;
 
 } // ends_with
 
+  
 
 bool ends_with(  const string& in, const char* m)
 {
@@ -286,6 +311,39 @@ bool ends_with(  const string& in, const char* m)
 }
 
 
+  
+bool ends_with_ci(  const string& in, const string& match)
+{
+
+  string i_in {in };
+  auto iend   {i_in.end() };
+  size_t ilen {i_in.length() };
+
+  string i_match {match};
+  size_t imlen   {i_match.length() };
+  auto imbeg     {i_match.begin() };
+  auto imend     {i_match.end() };
+
+  // shortcut
+  if( ilen < imlen) return false;
+
+  // just process end of string
+  std::transform(iend-imlen, iend, iend-imlen, ::tolower);
+
+  std::transform(imbeg, imend, imbeg, ::tolower);
+  
+  string cmp{ iend-imlen, iend };
+  
+  return cmp.compare(i_match) == 0;
+
+} // ends_with
+
+
+bool ends_with_ci(  const string& in, const char* m)
+{
+  return ends_with_ci( in, string{m} );
+}
+  
 string ltrim( const string& in, const string& match )
 {
   string out{in};
@@ -459,9 +517,7 @@ string uncapitalize( const string& in )
 
   std::transform(out.begin(), out.end(), out.begin(),
 		 [](unsigned char c){ return std::tolower(c); });
-
   return out;
-
 } // uncapitalize
 
 

@@ -152,9 +152,11 @@ localinstall:	lib
 
 
 uninstall:
-	sudo  rm  $(INSTALLPATH)/lib/libAllTheStrings.so.* 
+	sudo  unlink $(INSTALLPATH)/lib/libAllTheStrings.so
+	@echo "link to lib removed"
+	sudo  rm  -f $(INSTALLPATH)/lib/libAllTheStrings.so.* 
 	@echo  "libAllTheStrings.so removed"
-	sudo  rm  $(INSTALLPATH)/include/AllTheStrings.h 
+	sudo  rm  -f $(INSTALLPATH)/include/AllTheStrings.h 
 	@echo  "AllTheStrings  headers removed"
 
 

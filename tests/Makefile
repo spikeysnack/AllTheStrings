@@ -65,10 +65,13 @@ ARCHIVE =   AllTheStrings.tgz
 
 all: clean tests
 
-tests:	atstest applytest valuetest formattest inserttest colortest test
+tests:	atstest begin_endtest applytest valuetest formattest inserttest colortest test 
 
 atstest:	../AllTheStrings.o atstest.cpp
 	$(CXX) $(CXXFLAGS) $(DEFINES)  -I.. -o atstest atstest.cpp  ../AllTheStrings.o
+
+begin_endtest:	../AllTheStrings.o begin_endtest.cpp
+	$(CXX) $(CXXFLAGS) $(DEFINES)  -I.. -o begin_endtest begin_endtest.cpp  ../AllTheStrings.o
 
 valuetest:	../AllTheStrings.o valuetest.cpp
 	$(CXX) $(CXXFLAGS) $(DEFINES)  -I.. -o valuetest valuetest.cpp  ../AllTheStrings.o
@@ -95,6 +98,8 @@ table:	StringTable.h table.cpp
 
 test:	strtest
 	@./atstest
+	@read -p "Press enter to continue" dummy
+	@./begin_endtest
 	@read -p "Press enter to continue" dummy
 	@./applytest
 	@read -p "Press enter to continue" dummy
