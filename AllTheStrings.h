@@ -143,7 +143,7 @@ bool is_sentence( const char* cin);
 
   /* comparisons */
 bool less( const string &a, const string &b );
-bool less_insensive( const string &a, const string &b);
+bool less_insensitive( const string &a, const string &b);
 int compare(const string& a , const string& b , bool case_sensitive=true);
 
 bool begins_with (  const string& in, const string& match);
@@ -367,10 +367,13 @@ string interpolate( const S& orig , const Args&... args)
    string out(orig);
 
    // populate vector from argument list
-   //auto va {args...};
-   //std::vector<string> v{va};
+#if (__cplusplus < 201703L)
+   auto va =  {args...};
+   std::vector<string> v{va};
+#else
    std::vector<string> v{args...};
-
+#endif
+     
    size_t i = 1;
 
    for( string s: v)

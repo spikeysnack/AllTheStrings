@@ -18,8 +18,10 @@ EXCEPTIONS=1
 
 CC= gcc
 CXX= g++
+#STD = c++2a
+STD = gnu++23
 
-CXXFLAGS= -std=gnu++2a -Wall  -Wextra  -Wformat -pedantic -Werror -fpic 
+CXXFLAGS= -std=$(STD) -Wall  -Wextra  -Wformat -pedantic -Werror -fpic 
 #CC= clang
 #CXX= clang++
 #CXXFLAGS= -std=c++11 -Wall  -Wextra  -Wformat -pedantic -Werror -fpic 
@@ -61,6 +63,8 @@ BINARIES    =  libAllTheStrings.o libAllTheStrings.a
 TEST_BINARIES  =  strtest
 ARCHIVE =   AllTheStrings.tgz
 
+TESTS = atstest begin_endtest valuetest inserttest strtest applytest formattest colortest table singlefilelib_test
+
 .PHONY:	all clean tests
 
 all: clean tests
@@ -91,6 +95,8 @@ formattest:	../AllTheStrings.o formattest.cpp
 colortest:	../AllTheStrings.o colortest.cpp
 	$(CXX) $(CXXFLAGS) $(DEFINES)  -I.. -o colortest colortest.cpp  ../AllTheStrings.o
 
+singlefile_libtest:	../AllTheStrings.H singlefile_libtest.cpp
+	$(CXX) $(CXXFLAGS) $(DEFINES)  -I.. -o singlefile_libtest  singlefile_libtest.cpp  
 
 table:	StringTable.h table.cpp
 	$(CXX) $(CXXFLAGS) $(DEFINES)  -I.. -o table table.cpp 
@@ -110,9 +116,13 @@ test:	strtest
 	@./inserttest
 	@read -p "Press enter to continue" dummy
 	@./colortest
+	@read -p "Press enter to continue" dummy
+	@./singlefile_libtest
+	@read -p "Press enter to continue" dummy
+
 
 
 clean:	
-	rm -f *test *.o *~ 
+	rm -f $(TESTS) *.o *~ 
 
 

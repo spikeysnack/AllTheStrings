@@ -209,7 +209,7 @@ bool is_sentence( const char* cin);
 
   /* comparisons */
 bool less( const string &a, const string &b );
-bool less_insensive( const string &a, const string &b);
+bool less_insensitive( const string &a, const string &b);
 int compare(const string& a , const string& b , bool case_sensitive=true);
 
 bool begins_with (  const string& in, const string& match);
@@ -329,7 +329,7 @@ string repeat( const string &in, size_t n );
 
 // floating point string format
 template <class T>
-string fprep(T const &t, size_t prec=8, std::ios_base& (*fmt)(std::ios_base&) = defaultfloat )
+string fprep(T const &t, size_t prec=8, std::ios_base& (*fmt)(std::ios_base&) = std::defaultfloat )
 {
 
   std::stringstream ss;
@@ -344,7 +344,7 @@ string fprep(T const &t, size_t prec=8, std::ios_base& (*fmt)(std::ios_base&) = 
 
 // non-fp rep
 template <class T>
-string rep(T const &t, size_t prec=8, std::ios_base& (*fmt)(std::ios_base&) = defaultfloat )
+string rep(T const &t, size_t prec=8, std::ios_base& (*fmt)(std::ios_base&) = std::defaultfloat )
 {
 
   std::stringstream ss;
@@ -405,7 +405,7 @@ string interpolate( const S& orig , const Args&... args)
    string out(orig);
 
    // populate vector from argument list
-   auto va {args...};
+   auto va =  {args...};
    std::vector<string> v{va};
 
    size_t i = 1;
@@ -1418,7 +1418,7 @@ string repaginate(string& in, size_t len , size_t indent, bool indentall, size_t
 
 
   /* a case-sensitive less-than for use in sorting functions */
-struct less_sensitive : public std::binary_function< char,char,bool >
+struct less_case_sensitive : public std::less<char>
  {
    bool operator () (char a, char b) const
    {
@@ -1430,7 +1430,7 @@ struct less_sensitive : public std::binary_function< char,char,bool >
 
 
   /* a case-insensitive less-than for use in sorting functions */
-struct less_insensitive : public std::binary_function< char,char,bool >
+struct less_case_insensitive : public std::less<char>
  {
    bool operator () (char a, char b) const
    {
@@ -1444,13 +1444,13 @@ struct less_insensitive : public std::binary_function< char,char,bool >
 
 bool less(const string &a, const string &b)
  {
-   return std::lexicographical_compare( a.begin(), a.end(), b.begin(), b.end(), AllTheStrings::less_sensitive() );
+   return std::lexicographical_compare( a.begin(), a.end(), b.begin(), b.end(), AllTheStrings::less_case_sensitive() );
  }
 
 
-bool less_insensive(const string &a, const string &b)
+bool less_insensitive(const string &a, const string &b)
  {
-   return std::lexicographical_compare( a.begin(), a.end(), b.begin(), b.end(), AllTheStrings::less_insensitive() );
+   return std::lexicographical_compare( a.begin(), a.end(), b.begin(), b.end(), AllTheStrings::less_case_insensitive() );
  }
 
 

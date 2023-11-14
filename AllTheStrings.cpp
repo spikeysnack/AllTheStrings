@@ -24,9 +24,7 @@
 */
 
 
-
 #include "AllTheStrings.h"
-
 #include <cctype>
 
 #include <cstring>
@@ -1081,9 +1079,13 @@ string repaginate(string& in, size_t len , size_t indent, bool indentall, size_t
 }// repaginate
 
 
-  /* a case-sensitive less-than for use in sorting functions */
-struct less_sensitive : public std::binary_function< char,char,bool >
+// these structs are probably used only internally
+// for functions less and less_insensitive below
+
+// unsigned
+struct less_case_sensitive : std::less<char>
  {
+   
    bool operator () (char a, char b) const
    {
      unsigned char x(static_cast<unsigned char>(a));
@@ -1092,9 +1094,8 @@ struct less_sensitive : public std::binary_function< char,char,bool >
    }
 };
 
-
-  /* a case-insensitive less-than for use in sorting functions */
-struct less_insensitive : public std::binary_function< char,char,bool >
+// hack for insensitivity
+struct less_case_insensitive : public std::less<char>
  {
    bool operator () (char a, char b) const
    {
@@ -1105,19 +1106,21 @@ struct less_insensitive : public std::binary_function< char,char,bool >
 };
 
 
-
+// compares strings lexigraphically
 bool less(const string &a, const string &b)
  {
-   return std::lexicographical_compare( a.begin(), a.end(), b.begin(), b.end(), AllTheStrings::less_sensitive() );
+   return std::lexicographical_compare( a.begin(), a.end(), b.begin(), b.end(), AllTheStrings::less_case_sensitive() );
  }
 
 
-bool less_insensive(const string &a, const string &b)
+bool less_insensitive(const string &a, const string &b)
  {
-   return std::lexicographical_compare( a.begin(), a.end(), b.begin(), b.end(), AllTheStrings::less_insensitive() );
+   
+   return std::lexicographical_compare( a.begin(), a.end(), b.begin(), b.end(), less_case_insensitive() );
  }
 
 
+// display banner
 void ats_banner( std::ostream& os){ os << ats_ascii_banner; }
 
 

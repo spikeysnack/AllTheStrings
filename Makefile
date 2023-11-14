@@ -1,3 +1,4 @@
+
 #!/bin/make
 # GNU MAKEFILE
 
@@ -20,8 +21,10 @@ COLORS=1
 
 CC= gcc
 CXX= g++
+#STD = c++14
+STD = gnu++23
 
-CXXFLAGS= -std=gnu++2a -Wall  -Wextra  -Wformat -pedantic -Werror -fpic 
+CXXFLAGS= -std=$(STD) -Wall  -Wextra  -Wformat -pedantic -Werror -fpic 
 #CC= clang
 #CXX= clang++
 #CXXFLAGS= -std=c++11 -Wall  -Wextra  -Wformat -pedantic -Werror -fpic 
@@ -132,7 +135,7 @@ dist:   clean
 
 install:	lib
 	sudo  cp libAllTheStrings.so.1 $(INSTALLPATH)/lib
-	sudo  ln -s $(INSTALLPATH)/lib/libAllTheStrings.so.1 $(INSTALLPATH)/lib/libAllTheStrings.so   
+	sudo  ln -sf $(INSTALLPATH)/lib/libAllTheStrings.so.1 $(INSTALLPATH)/lib/libAllTheStrings.so   
 	sudo  cp AllTheStrings.h $(INSTALLPATH)/include/
 	@echo  ""
 	@echo  "libAllTheStrings.so  installed to /usr/local/lib. headers to /usr/local/include."
@@ -142,7 +145,7 @@ install:	lib
 localinstall:	lib
 	install -d $(LLIB) $(LINC)
 	cp libAllTheStrings.so.1 $(LLIB)
-	ln -s $(LLIB)/libAllTheStrings.so.1 $(LLIB)/libAllTheStrings.so   
+	ln -sf $(LLIB)/libAllTheStrings.so.1 $(LLIB)/libAllTheStrings.so   
 	cp AllTheStrings.h $(LINC)
 	@echo
 	@echo  "libAllTheStrings.so  installed to $(LLIB) . headers to $(LINC) ."
